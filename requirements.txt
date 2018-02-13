@@ -1,0 +1,10 @@
+Django>=1.8,<2.0
+setuptools
+python-dateutil
+psycopg2
+flickrapi==2.3.1
+numpy>=1.7.1
+pyshp
+
+
+
