@@ -1,0 +1,32 @@
+<table border=5><h3><tr>
+	<td><a href="{% url 'sort:home_search' %}">Search the Flickr database</td>
+	<td><a href="{% url 'sort:analytics' %}">Analytics</a></td>
+	<td><a href="{% url 'sort:home_photos' %}">Sort Photos</a></td>
+	<td><a href="{% url 'sort:home_tags' %}">Sort Tags</a></h3></td></h3></tr>
+	</table>
+<br>
+
+<h3>Target: {{target}}</h3>
+
+
+<form action="{% url 'sort:sort_tags' target.pk %}" method="post">
+	{% csrf_token %}
+	<table border=1>
+		<tr>
+			<td>Tag</td>
+			<td>Useful</td>
+			<td>Not useful</td>
+		</tr>
+		{% for tag in tag_list %}
+			<tr>
+				<td>{{tag.text}}</td>
+				<td><input type="radio" name={{tag.pk}} value=useful></td>
+				<td><input type="radio" name={{tag.pk}} value=not_useful checked></td>
+			</tr>
+		{% endfor %}
+	</table>
+	<input type="submit" value="Save">
+</form>
+
+
+

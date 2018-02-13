@@ -1,0 +1,24 @@
+<table border=5><h3><tr>
+	<td><a href="{% url 'sort:home_search' %}">Search the Flickr database</td>
+	<td><a href="{% url 'sort:analytics' %}">Analytics</a></td>
+	<td><a href="{% url 'sort:home_photos' %}">Sort Photos</a></td>
+	<td><a href="{% url 'sort:home_tags' %}">Sort Tags</a></h3></td></h3></tr>
+	</table>
+<br>
+<form action="{% url 'sort:home_search' %}", method="post">
+{% csrf_token %}
+{{search_form}}
+<input type="submit" name="search_submit" value="Search"/>
+</form>
+
+<h1>{{search_complete}}</h1>
+
+<form action="{% url 'sort:home_search' %}", method="post">
+{% csrf_token %}
+{{target_form}}
+<input type="submit" name="tags_submit" value="Get Tags"/>	
+</form>
+<textarea rows="15" cols="30">{{tags}}</textarea>
+
+<br><br><br>
+

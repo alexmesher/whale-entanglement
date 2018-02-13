@@ -1,0 +1,33 @@
+<table border=5><h3><tr>
+	<td><a href="{% url 'sort:home_search' %}">Search the Flickr database</td>
+	<td><a href="{% url 'sort:analytics' %}">Analytics</a></td>
+	<td><a href="{% url 'sort:home_photos' %}">Sort Photos</a></td>
+	<td><a href="{% url 'sort:home_tags' %}">Sort Tags</a></h3></td></h3></tr>
+	</table>
+<br>
+
+<h3>Sorting pictures for target: {{target}}</h3>
+Total images: {{count}}
+
+
+<form action="{% url 'sort:sort_photos' target.pk %}" method="post">
+	{% csrf_token %}
+	<table border=1>
+		<tr>
+			<td>Image</td>
+			<td>Target</td>
+			<td>Not target</td>
+		</tr>
+		{% for photo in photo_list %}
+			<tr>
+				<td><img src={{photo.image}} width = "600"></td>
+				<td><input type="radio" name={{photo.photo_id}} value=accept></td>
+				<td><input type="radio" name={{photo.photo_id}} value=reject checked></td>
+			</tr>
+		{% endfor %}
+	</table>
+	<input type="submit" value="Save">
+</form>
+
+
+
